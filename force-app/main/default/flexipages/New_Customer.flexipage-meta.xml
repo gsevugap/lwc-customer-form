@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>App page to capture new customer details</description>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentName>c:customerForm</componentName>
+                <identifier>c_customerForm</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>main</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>New Customer</masterLabel>
+    <pageTemplate>AppPage_Default</pageTemplate>
+    <type>AppPage</type>
+</FlexiPage>
