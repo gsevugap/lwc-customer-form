@@ -49,6 +49,55 @@
                 class="slds-m-top_small"
             ></lightning-input>
 
+            <div class="slds-section slds-m-top_medium">
+                <h3 class="slds-section__title slds-theme_shade slds-p-around_x-small">
+                    Shipping Address
+                </h3>
+            </div>
+
+            <lightning-input
+                label="Street"
+                name="shippingStreet"
+                value={shippingStreet}
+                onchange={handleChange}
+                class="slds-m-top_small"
+            ></lightning-input>
+
+            <lightning-input
+                label="City"
+                name="shippingCity"
+                value={shippingCity}
+                onchange={handleChange}
+                class="slds-m-top_small"
+            ></lightning-input>
+
+            <div class="slds-grid slds-gutters slds-m-top_small">
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-input
+                        label="State"
+                        name="shippingState"
+                        value={shippingState}
+                        onchange={handleChange}
+                    ></lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-input
+                        label="Zip Code"
+                        name="shippingPostalCode"
+                        value={shippingPostalCode}
+                        onchange={handleChange}
+                    ></lightning-input>
+                </div>
+            </div>
+
+            <lightning-input
+                label="Country"
+                name="shippingCountry"
+                value={shippingCountry}
+                onchange={handleChange}
+                class="slds-m-top_small"
+            ></lightning-input>
+
             <div class="slds-m-top_medium">
                 <lightning-button
                     variant="brand"

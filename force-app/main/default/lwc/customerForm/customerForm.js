@@ -7,6 +7,11 @@ export default class CustomerForm extends NavigationMixin(LightningElement) {
     @track lastName = '';
     @track email = '';
     @track phone = '';
+    @track shippingStreet = '';
+    @track shippingCity = '';
+    @track shippingState = '';
+    @track shippingPostalCode = '';
+    @track shippingCountry = '';
     @track isSaving = false;
     @track successMessage = '';
     @track errorMessage = '';
@@ -28,7 +33,12 @@ export default class CustomerForm extends NavigationMixin(LightningElement) {
                 firstName: this.firstName,
                 lastName: this.lastName,
                 email: this.email,
-                phone: this.phone
+                phone: this.phone,
+                shippingStreet: this.shippingStreet,
+                shippingCity: this.shippingCity,
+                shippingState: this.shippingState,
+                shippingPostalCode: this.shippingPostalCode,
+                shippingCountry: this.shippingCountry
             });
 
             this.successMessage = 'Contact saved successfully! Redirecting...';
@@ -56,6 +66,11 @@ export default class CustomerForm extends NavigationMixin(LightningElement) {
         this.lastName = '';
         this.email = '';
         this.phone = '';
+        this.shippingStreet = '';
+        this.shippingCity = '';
+        this.shippingState = '';
+        this.shippingPostalCode = '';
+        this.shippingCountry = '';
         this.template.querySelectorAll('lightning-input').forEach(input => {
             input.value = '';
         });
