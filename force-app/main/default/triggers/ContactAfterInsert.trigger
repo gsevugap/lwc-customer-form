@@ -5,17 +5,35 @@ trigger ContactAfterInsert on Contact (after insert) {
         Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
         email.setToAddresses(new List<String>{ 'kgsnaga@gmail.com' });
         email.setSubject('New Customer Created: ' + c.FirstName + ' ' + c.LastName);
-        email.setPlainTextBody(
-            'A new customer contact has been created.\n\n' +
-            'Name: ' + c.FirstName + ' ' + c.LastName + '\n' +
-            'Email: ' + (c.Email != null ? c.Email : 'N/A') + '\n' +
-            'Phone: ' + (c.Phone != null ? c.Phone : 'N/A') + '\n' +
-            'Created: ' + String.valueOf(c.CreatedDate)
+        email.setHtmlBody(
+            '<p>A new customer contact has been created.</p>' +
+            '<table>' +
+            '<tr><td><b>Name:</b></td><td>' + c.FirstName + ' ' + c.LastName + '</td></tr>' +
+            '<tr><td><b>Email:</b></td><td>' + (c.Email != null ? c.Email : 'N/A') + '</td></tr>' +
+            '<tr><td><b>Phone:</b></td><td>' + (c.Phone != null ? c.Phone : 'N/A') + '</td></tr>' +
+            '<tr><td><b>Street:</b></td><td>' + (c.MailingStreet != null ? c.MailingStreet : 'N/A') + '</td></tr>' +
+            '<tr><td><b>City:</b></td><td>' + (c.MailingCity != null ? c.MailingCity : 'N/A') + '</td></tr>' +
+            '<tr><td><b>State:</b></td><td>' + (c.MailingState != null ? c.MailingState : 'N/A') + '</td></tr>' +
+            '<tr><td><b>Zip:</b></td><td>' + (c.MailingPostalCode != null ? c.MailingPostalCode : 'N/A') + '</td></tr>' +
+            '<tr><td><b>Country:</b></td><td>' + (c.MailingCountry != null ? c.MailingCountry : 'N/A') + '</td></tr>' +
+            '</table>'
         );
+        email.setSaveAsActivity(false);
         emails.add(email);
     }
 
     if (!emails.isEmpty()) {
-        Messaging.sendEmail(emails);
+        try {
+            List<Messaging.SendEmailResult> results = Messaging.sendEmail(emails, false);
+            for (Messaging.SendEmailResult r : results) {
+                if (!r.isSuccess()) {
+                    for (Messaging.SendEmailError err : r.getErrors()) {
+                        System.debug('Email send error: ' + err.getMessage());
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.debug('Exception sending email: ' + e.getMessage());
+        }
     }
 }

@@ -41,21 +41,16 @@ export default class CustomerForm extends NavigationMixin(LightningElement) {
                 shippingCountry: this.shippingCountry
             });
 
-            this.successMessage = 'Contact saved successfully! Redirecting...';
-            this.handleReset();
-
-            setTimeout(() => {
-                this[NavigationMixin.Navigate]({
-                    type: 'standard__objectPage',
-                    attributes: {
-                        objectApiName: 'Contact',
-                        actionName: 'list'
-                    },
-                    state: {
-                        filterName: 'Recent'
-                    }
-                });
-            }, 1500);
+            this[NavigationMixin.Navigate]({
+                type: 'standard__objectPage',
+                attributes: {
+                    objectApiName: 'Contact',
+                    actionName: 'list'
+                },
+                state: {
+                    filterName: 'Recent'
+                }
+            });
         } catch (error) {
             this.errorMessage = error?.body?.message || 'An unexpected error occurred.';
         } finally {
