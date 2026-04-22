@@ -1,4 +1,13 @@
 public with sharing class CustomerFormController {
+    @AuraEnabled(cacheable=true)
+    public static List<Contact> getContacts() {
+        return [
+            SELECT Id, FirstName, LastName, Email, Phone, MailingCity, MailingState
+            FROM Contact
+            ORDER BY CreatedDate DESC
+        ];
+    }
+
     @AuraEnabled
     public static Id saveContact(String firstName, String lastName, String email, String phone,
         String shippingStreet, String shippingCity, String shippingState,

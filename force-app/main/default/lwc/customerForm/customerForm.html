@@ -1,13 +1,5 @@
 <template>
     <lightning-card title="New Customer" icon-name="standard:contact">
-        <div slot="actions">
-            <lightning-button
-                variant="brand"
-                label="New Customer"
-                icon-name="utility:add"
-                onclick={handleReset}
-            ></lightning-button>
-        </div>
         <div class="slds-p-around_medium">
             <template if:true={successMessage}>
                 <div class="slds-notify slds-notify_toast slds-theme_success slds-m-bottom_medium" role="status">
