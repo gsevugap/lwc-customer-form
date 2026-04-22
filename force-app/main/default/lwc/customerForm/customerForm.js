@@ -46,11 +46,13 @@ export default class CustomerForm extends NavigationMixin(LightningElement) {
 
             setTimeout(() => {
                 this[NavigationMixin.Navigate]({
-                    type: 'standard__recordPage',
+                    type: 'standard__objectPage',
                     attributes: {
-                        recordId: contactId,
                         objectApiName: 'Contact',
-                        actionName: 'view'
+                        actionName: 'list'
+                    },
+                    state: {
+                        filterName: 'Recent'
                     }
                 });
             }, 1500);
