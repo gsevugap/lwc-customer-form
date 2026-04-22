@@ -1,0 +1,77 @@
+{
+  "required" : [ "contactId" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "contactId" : {
+      "title" : "Contact Id",
+      "description" : "The Salesforce Record ID of the contact to update.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "email" : {
+      "title" : "Email",
+      "description" : "Updated email address (leave blank to keep existing).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "firstName" : {
+      "title" : "First Name",
+      "description" : "Updated first name (leave blank to keep existing).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "lastName" : {
+      "title" : "Last Name",
+      "description" : "Updated last name (leave blank to keep existing).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "mailingCity" : {
+      "title" : "Mailing City",
+      "description" : "Updated city (leave blank to keep existing).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "mailingCountry" : {
+      "title" : "Mailing Country",
+      "description" : "Updated country (leave blank to keep existing).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "mailingPostalCode" : {
+      "title" : "Mailing Postal Code",
+      "description" : "Updated postal/zip code (leave blank to keep existing).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "mailingState" : {
+      "title" : "Mailing State",
+      "description" : "Updated state (leave blank to keep existing).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "mailingStreet" : {
+      "title" : "Mailing Street",
+      "description" : "Updated street address (leave blank to keep existing).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "phone" : {
+      "title" : "Phone",
+      "description" : "Updated phone number (leave blank to keep existing).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AiAuthoringBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+  <bundleType>Agent</bundleType>
+  <description>Customer Lookup Agent — search, view, and update customer contact records.</description>
+  <masterLabel>Customer Lookup Agent</masterLabel>
+  <target>Customer_Lookup_Agent.v2</target>
+</AiAuthoringBundle>
