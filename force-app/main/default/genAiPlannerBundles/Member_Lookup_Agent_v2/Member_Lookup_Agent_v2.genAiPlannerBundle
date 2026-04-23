@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>An internal employee agent that helps staff search for member contact records by last name, view full details, update existing records, or create new members.</description>
+    <localTopicLinks>
+        <genAiPluginName>create_member_16jg5000000PuDV</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>lookup_member_16jg5000000PuDV</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>off_topic_16jg5000000PuDV</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>topic_selector_16jg5000000PuDV</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>update_member_16jg5000000PuDV</genAiPluginName>
+    </localTopicLinks>
+    <localTopics>
+        <fullName>off_topic_16jg5000000PuDV</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Redirect conversation when the user request is not related to member management.</description>
+        <developerName>off_topic_16jg5000000PuDV</developerName>
+        <genAiPluginInstructions>
+            <description>You are an internal employee agent that helps staff find and manage member contact records. You are professional, clear, and concise in your responses.</description>
+            <developerName>instruction0_179g5000000eoML</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179g5000000eoML</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localDeveloperName>off_topic</localDeveloperName>
+        <masterLabel>Off Topic</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>create_member_16jg5000000PuDV</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Creates a new member contact record by collecting all required details from the user.</description>
+        <developerName>create_member_16jg5000000PuDV</developerName>
+        <genAiPluginInstructions>
+            <description>You are an internal employee agent that helps staff find and manage member contact records. You are professional, clear, and concise in your responses.</description>
+            <developerName>instruction0_179g5000000eoMJ</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179g5000000eoMJ</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>create_contact_179g5000000eoMJ</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>create_contact_179g5000000eoMJ</fullName>
+            <description>Creates a new Contact record in Salesforce with the provided member details.</description>
+            <developerName>create_contact_179g5000000eoMJ</developerName>
+            <invocationTarget>CreateContactAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>create_contact</localDeveloperName>
+            <masterLabel>Create Contact</masterLabel>
+        </localActions>
+        <localDeveloperName>create_member</localDeveloperName>
+        <masterLabel>Create Member</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>update_member_16jg5000000PuDV</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Updates an existing member contact record. Asks the user which fields to change, confirms the changes, then saves the updated record and displays the confirmation.</description>
+        <developerName>update_member_16jg5000000PuDV</developerName>
+        <genAiPluginInstructions>
+            <description>You are an internal employee agent that helps staff find and manage member contact records. You are professional, clear, and concise in your responses.</description>
+            <developerName>instruction0_179g5000000eoMK</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179g5000000eoMK</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>update_contact_179g5000000eoMK</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>update_contact_179g5000000eoMK</fullName>
+            <description>Updates an existing Contact record in Salesforce with new field values provided by the user.</description>
+            <developerName>update_contact_179g5000000eoMK</developerName>
+            <invocationTarget>UpdateContactAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>update_contact</localDeveloperName>
+            <masterLabel>Update Contact</masterLabel>
+        </localActions>
+        <localDeveloperName>update_member</localDeveloperName>
+        <masterLabel>Update Member</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>lookup_member_16jg5000000PuDV</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Search for member contact records by last name. Displays all matching records with full details. If no records found, says so and offers to create a new member.</description>
+        <developerName>lookup_member_16jg5000000PuDV</developerName>
+        <genAiPluginInstructions>
+            <description>You are an internal employee agent that helps staff find and manage member contact records. You are professional, clear, and concise in your responses.</description>
+            <developerName>instruction0_179g5000000eoMH</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179g5000000eoMH</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>query_contacts_179g5000000eoMH</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>query_contacts_179g5000000eoMH</fullName>
+            <description>Searches Salesforce Contact records by last name and returns a formatted list of matching members with all their details.</description>
+            <developerName>query_contacts_179g5000000eoMH</developerName>
+            <invocationTarget>QueryContactAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>query_contacts</localDeveloperName>
+            <masterLabel>Query Contacts</masterLabel>
+        </localActions>
+        <localDeveloperName>lookup_member</localDeveloperName>
+        <masterLabel>Lookup Member</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>topic_selector_16jg5000000PuDV</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Welcome the user and route to the appropriate topic based on their request.</description>
+        <developerName>topic_selector_16jg5000000PuDV</developerName>
+        <genAiPluginInstructions>
+            <description>You are an internal employee agent that helps staff find and manage member contact records. You are professional, clear, and concise in your responses.</description>
+            <developerName>instruction0_179g5000000eoMI</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179g5000000eoMI</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localDeveloperName>topic_selector</localDeveloperName>
+        <masterLabel>Topic Selector</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <masterLabel>Member Lookup Agent</masterLabel>
+    <plannerType>Atlas__ConcurrentMultiAgentOrchestration</plannerType>
+</GenAiPlannerBundle>

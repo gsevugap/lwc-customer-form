@@ -3,5 +3,5 @@
   <bundleType>Agent</bundleType>
   <description>Member Lookup Agent — search, view, and update member contact records.</description>
   <masterLabel>Member Lookup Agent</masterLabel>
-  <target>Member_Lookup_Agent.v1</target>
+  <target>Member_Lookup_Agent.v2</target>
 </AiAuthoringBundle>
