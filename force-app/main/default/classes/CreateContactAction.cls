@@ -33,7 +33,7 @@ public with sharing class CreateContactAction {
         public String resultMessage;
     }
 
-    @InvocableMethod(label='Create Customer Contact' description='Creates a Contact record with the provided customer details and returns a confirmation message.')
+    @InvocableMethod(label='Create Member Contact' description='Creates a Contact record with the provided member details and returns a confirmation message.')
     public static List<ContactOutput> createContact(List<ContactInput> inputs) {
         List<ContactOutput> outputs = new List<ContactOutput>();
 
@@ -54,7 +54,7 @@ public with sharing class CreateContactAction {
                 insert c;
 
                 output.resultMessage =
-                    'Customer contact created successfully!\n\n' +
+                    'Member contact created successfully!\n\n' +
                     'Name: ' + input.firstName + ' ' + input.lastName + '\n' +
                     'Email: ' + (input.email != null ? input.email : 'N/A') + '\n' +
                     'Phone: ' + (input.phone != null ? input.phone : 'N/A') + '\n' +

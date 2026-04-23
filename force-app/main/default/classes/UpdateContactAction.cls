@@ -36,7 +36,7 @@ public with sharing class UpdateContactAction {
         public String resultMessage;
     }
 
-    @InvocableMethod(label='Update Customer Contact' description='Updates an existing Contact record with the provided details and returns a confirmation message.')
+    @InvocableMethod(label='Update Member Contact' description='Updates an existing Contact record with the provided details and returns a confirmation message.')
     public static List<UpdateResult> updateContact(List<UpdateRequest> requests) {
         List<UpdateResult> results = new List<UpdateResult>();
         for (UpdateRequest req : requests) {
@@ -60,7 +60,7 @@ public with sharing class UpdateContactAction {
                     FROM Contact WHERE Id = :req.contactId
                 ];
                 result.resultMessage =
-                    'Customer updated successfully!\n\n' +
+                    'Member updated successfully!\n\n' +
                     'Name: ' + updated.FirstName + ' ' + updated.LastName + '\n' +
                     'Email: ' + (updated.Email != null ? updated.Email : 'N/A') + '\n' +
                     'Phone: ' + (updated.Phone != null ? updated.Phone : 'N/A') + '\n' +

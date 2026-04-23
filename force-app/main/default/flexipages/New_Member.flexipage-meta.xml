@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>App page to capture new member details</description>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentName>c:memberForm</componentName>
+                <identifier>c_memberForm</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>main</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>New Member</masterLabel>
+    <template>
+        <name>AppPage_Default</name>
+    </template>
+    <type>AppPage</type>
+</FlexiPage>

@@ -31,13 +31,13 @@ public with sharing class QueryContactAction {
 
             if (contacts.isEmpty()) {
                 result.found = False;
-                result.contactSummary = 'No customers found with last name "' + req.lastName + '".';
+                result.contactSummary = 'No members found with last name "' + req.lastName + '".';
                 result.contactIds = '';
             } else {
                 result.found = True;
                 List<String> ids = new List<String>();
                 List<String> lines = new List<String>();
-                lines.add('Found ' + contacts.size() + ' customer(s) with last name "' + req.lastName + '":\n');
+                lines.add('Found ' + contacts.size() + ' member(s) with last name "' + req.lastName + '":\n');
                 Integer idx = 1;
                 for (Contact c : contacts) {
                     ids.add(c.Id);

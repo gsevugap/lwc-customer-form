@@ -4,9 +4,9 @@ trigger ContactAfterInsert on Contact (after insert) {
     for (Contact c : Trigger.new) {
         Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
         email.setToAddresses(new List<String>{ 'kgsnaga@gmail.com' });
-        email.setSubject('New Customer Created: ' + c.FirstName + ' ' + c.LastName);
+        email.setSubject('New Member Created: ' + c.FirstName + ' ' + c.LastName);
         email.setHtmlBody(
-            '<p>A new customer contact has been created.</p>' +
+            '<p>A new member contact has been created.</p>' +
             '<table>' +
             '<tr><td><b>Name:</b></td><td>' + c.FirstName + ' ' + c.LastName + '</td></tr>' +
             '<tr><td><b>Email:</b></td><td>' + (c.Email != null ? c.Email : 'N/A') + '</td></tr>' +

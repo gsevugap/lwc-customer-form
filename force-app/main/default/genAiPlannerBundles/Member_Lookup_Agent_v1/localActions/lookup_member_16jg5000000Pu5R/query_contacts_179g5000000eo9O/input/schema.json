@@ -1,0 +1,14 @@
+{
+  "required" : [ "lastName" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "lastName" : {
+      "title" : "Last Name",
+      "description" : "The member's last name to search for.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

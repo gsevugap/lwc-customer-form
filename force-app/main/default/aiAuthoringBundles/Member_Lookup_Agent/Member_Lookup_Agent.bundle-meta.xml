@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AiAuthoringBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+  <bundleType>Agent</bundleType>
+  <description>Member Lookup Agent — search, view, and update member contact records.</description>
+  <masterLabel>Member Lookup Agent</masterLabel>
+  <target>Member_Lookup_Agent.v1</target>
+</AiAuthoringBundle>
