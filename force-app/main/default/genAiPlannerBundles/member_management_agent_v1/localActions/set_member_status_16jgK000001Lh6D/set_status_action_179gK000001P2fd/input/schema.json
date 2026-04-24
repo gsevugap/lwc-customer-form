@@ -1,0 +1,21 @@
+{
+  "required" : [ "memberId", "status" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "memberId" : {
+      "title" : "Member Id",
+      "description" : "The Salesforce Record ID of the member.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "status" : {
+      "title" : "Status",
+      "description" : "The desired status: Active or Inactive.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

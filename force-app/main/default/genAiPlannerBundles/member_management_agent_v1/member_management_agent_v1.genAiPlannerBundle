@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Member Management Agent for add, update, lookup, list, status changes, and CSV export backed by Salesforce Contact records</description>
+    <localTopicLinks>
+        <genAiPluginName>add_member_16jgK000001Lh6D</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>agent_router_16jgK000001Lh6D</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>export_members_16jgK000001Lh6D</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>list_members_16jgK000001Lh6D</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>lookup_member_16jgK000001Lh6D</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>set_member_status_16jgK000001Lh6D</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>update_member_16jgK000001Lh6D</genAiPluginName>
+    </localTopicLinks>
+    <localTopics>
+        <fullName>update_member_16jgK000001Lh6D</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Update details for an existing member by member ID</description>
+        <developerName>update_member_16jgK000001Lh6D</developerName>
+        <genAiPluginInstructions>
+            <description>You are a Member Management assistant. Help staff add, update, find, list, set status, and export members stored as Salesforce Contact records. Always use the available actions to interact with member data.</description>
+            <developerName>instruction0_179gK000001P2fe</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179gK000001P2fe</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>update_member_in_list_179gK000001P2fe</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>update_member_in_list_179gK000001P2fe</fullName>
+            <description>Updates an existing Contact member record with provided fields.</description>
+            <developerName>update_member_in_list_179gK000001P2fe</developerName>
+            <invocationTarget>UpdateMemberAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>update_member_in_list</localDeveloperName>
+            <masterLabel>Update Member In List</masterLabel>
+        </localActions>
+        <localDeveloperName>update_member</localDeveloperName>
+        <masterLabel>Update Member</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>set_member_status_16jgK000001Lh6D</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Deactivate or reactivate a member</description>
+        <developerName>set_member_status_16jgK000001Lh6D</developerName>
+        <genAiPluginInstructions>
+            <description>You are a Member Management assistant. Help staff add, update, find, list, set status, and export members stored as Salesforce Contact records. Always use the available actions to interact with member data.</description>
+            <developerName>instruction0_179gK000001P2fd</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179gK000001P2fd</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>set_status_action_179gK000001P2fd</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>set_status_action_179gK000001P2fd</fullName>
+            <description>Sets a Contact member status to Active or Inactive.</description>
+            <developerName>set_status_action_179gK000001P2fd</developerName>
+            <invocationTarget>SetMemberStatusAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>set_status_action</localDeveloperName>
+            <masterLabel>Set Status Action</masterLabel>
+        </localActions>
+        <localDeveloperName>set_member_status</localDeveloperName>
+        <masterLabel>Set Member Status</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>list_members_16jgK000001Lh6D</fullName>
+        <canEscalate>false</canEscalate>
+        <description>List all members, optionally filtered by status or tier</description>
+        <developerName>list_members_16jgK000001Lh6D</developerName>
+        <genAiPluginInstructions>
+            <description>You are a Member Management assistant. Help staff add, update, find, list, set status, and export members stored as Salesforce Contact records. Always use the available actions to interact with member data.</description>
+            <developerName>instruction0_179gK000001P2ff</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179gK000001P2ff</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>list_members_action_179gK000001P2ff</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>list_members_action_179gK000001P2ff</fullName>
+            <description>Returns a JSON list of Contact members with optional status and tier filters.</description>
+            <developerName>list_members_action_179gK000001P2ff</developerName>
+            <invocationTarget>ListMembersAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>list_members_action</localDeveloperName>
+            <masterLabel>List Members Action</masterLabel>
+        </localActions>
+        <localDeveloperName>list_members</localDeveloperName>
+        <masterLabel>List Members</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>add_member_16jgK000001Lh6D</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Add a new member by creating a Salesforce Contact record</description>
+        <developerName>add_member_16jgK000001Lh6D</developerName>
+        <genAiPluginInstructions>
+            <description>You are a Member Management assistant. Help staff add, update, find, list, set status, and export members stored as Salesforce Contact records. Always use the available actions to interact with member data.</description>
+            <developerName>instruction0_179gK000001P2fZ</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179gK000001P2fZ</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>add_member_to_list_179gK000001P2fZ</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>add_member_to_list_179gK000001P2fZ</fullName>
+            <description>Creates a new Salesforce Contact record as a member and returns the new Record ID.</description>
+            <developerName>add_member_to_list_179gK000001P2fZ</developerName>
+            <invocationTarget>AddMemberAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>add_member_to_list</localDeveloperName>
+            <masterLabel>Add Member To List</masterLabel>
+        </localActions>
+        <localDeveloperName>add_member</localDeveloperName>
+        <masterLabel>Add Member</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>agent_router_16jgK000001Lh6D</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Entry point that routes to member management tasks based on user intent</description>
+        <developerName>agent_router_16jgK000001Lh6D</developerName>
+        <genAiPluginInstructions>
+            <description>You are a Member Management assistant. Help staff add, update, find, list, set status, and export members stored as Salesforce Contact records. Always use the available actions to interact with member data.</description>
+            <developerName>instruction0_179gK000001P2fa</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179gK000001P2fa</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localDeveloperName>agent_router</localDeveloperName>
+        <masterLabel>Member Management Router</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>lookup_member_16jgK000001Lh6D</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Look up a single member by member ID or email</description>
+        <developerName>lookup_member_16jgK000001Lh6D</developerName>
+        <genAiPluginInstructions>
+            <description>You are a Member Management assistant. Help staff add, update, find, list, set status, and export members stored as Salesforce Contact records. Always use the available actions to interact with member data.</description>
+            <developerName>instruction0_179gK000001P2fc</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179gK000001P2fc</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>find_member_179gK000001P2fc</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>find_member_179gK000001P2fc</fullName>
+            <description>Finds a Contact member by Record ID or email and returns their details.</description>
+            <developerName>find_member_179gK000001P2fc</developerName>
+            <invocationTarget>FindMemberAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>find_member</localDeveloperName>
+            <masterLabel>Find Member</masterLabel>
+        </localActions>
+        <localDeveloperName>lookup_member</localDeveloperName>
+        <masterLabel>Lookup Member</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>export_members_16jgK000001Lh6D</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Export members in CSV format</description>
+        <developerName>export_members_16jgK000001Lh6D</developerName>
+        <genAiPluginInstructions>
+            <description>You are a Member Management assistant. Help staff add, update, find, list, set status, and export members stored as Salesforce Contact records. Always use the available actions to interact with member data.</description>
+            <developerName>instruction0_179gK000001P2fb</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179gK000001P2fb</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>export_members_csv_179gK000001P2fb</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>export_members_csv_179gK000001P2fb</fullName>
+            <description>Converts a JSON list of members into a CSV string with headers.</description>
+            <developerName>export_members_csv_179gK000001P2fb</developerName>
+            <invocationTarget>ExportMembersCsvAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>export_members_csv</localDeveloperName>
+            <masterLabel>Export Members Csv</masterLabel>
+        </localActions>
+        <localDeveloperName>export_members</localDeveloperName>
+        <masterLabel>Export Members</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <masterLabel>member management agent</masterLabel>
+    <plannerType>Atlas__ConcurrentMultiAgentOrchestration</plannerType>
+</GenAiPlannerBundle>

@@ -1,0 +1,338 @@
+system:
+    instructions: "You are a Member Management assistant. Help staff add, update, find, list, set status, and export members stored as Salesforce Contact records. Always use the available actions to interact with member data."
+    messages:
+        welcome: "Hi! I can help manage members: add, update, find, list, set status, and export to CSV. What would you like to do?"
+        error: "Sorry, something went wrong while processing your request."
+config:
+    developer_name: "member_management_agent"
+    default_agent_user: "merchant_support_agent.asuhnxjnl4uk.gsqoq5vkjeui@orgfarm.salesforce.com"
+    description: "Member Management Agent for add, update, lookup, list, status changes, and CSV export backed by Salesforce Contact records"
+    agent_label: "member management agent"
+    enable_enhanced_event_logs: False
+    agent_type: "AgentforceServiceAgent"
+variables:
+    member_id: mutable string = ""
+        description: "Salesforce Contact Record ID of the member"
+    first_name: mutable string = ""
+        description: "Temp: member first name"
+    last_name: mutable string = ""
+        description: "Temp: member last name"
+    email: mutable string = ""
+        description: "Temp: member email"
+    phone: mutable string = ""
+        description: "Temp: member phone"
+    status: mutable string = ""
+        description: "Temp: member status (Active or Inactive)"
+    join_date: mutable string = ""
+        description: "Temp: member join date (YYYY-MM-DD format)"
+    tier: mutable string = ""
+        description: "Temp: member tier"
+    list_results: mutable string = ""
+        description: "JSON string of members returned from list operation"
+    status_filter: mutable string = ""
+        description: "Optional filter for list_members by status"
+    tier_filter: mutable string = ""
+        description: "Optional filter for list_members by tier"
+start_agent agent_router:
+    label: "Member Management Router"
+    description: "Entry point that routes to member management tasks based on user intent"
+    reasoning:
+        instructions: ->
+            | Route the user's request by detecting intent from keywords:
+              - add/create -> go_to_add_member
+              - update/edit -> go_to_update_member
+              - find/lookup/search -> go_to_lookup_member
+              - list/show -> go_to_list_members
+              - deactivate/reactivate/set status -> go_to_set_member_status
+              - export/download CSV -> go_to_export_members
+        actions:
+            go_to_add_member: @utils.transition to @topic.add_member
+                description: "Transition to add a new member."
+            go_to_update_member: @utils.transition to @topic.update_member
+                description: "Transition to update an existing member."
+            go_to_lookup_member: @utils.transition to @topic.lookup_member
+                description: "Transition to look up a single member."
+            go_to_list_members: @utils.transition to @topic.list_members
+                description: "Transition to list members with optional filters."
+            go_to_set_member_status: @utils.transition to @topic.set_member_status
+                description: "Transition to set a member's status."
+            go_to_export_members: @utils.transition to @topic.export_members
+                description: "Transition to export members as CSV."
+topic add_member:
+    label: "Add Member"
+    description: "Add a new member by creating a Salesforce Contact record"
+
+    before_reasoning:
+        if @variables.first_name == "" or @variables.last_name == "":
+            transition to @topic.add_member
+
+    reasoning:
+        instructions: ->
+            | Collect first name, last name (required), and optionally email, phone, status, join date (YYYY-MM-DD), and tier.
+            | Call add_member_to_list, then confirm success with the new Member ID.
+        actions:
+            tool_add_member_to_list: @actions.add_member_to_list
+                with firstName = @variables.first_name
+                with lastName = @variables.last_name
+                with email = @variables.email
+                with phone = @variables.phone
+                with status = @variables.status
+                with joinDate = @variables.join_date
+                with tier = @variables.tier
+                set @variables.member_id = @outputs.memberId
+
+    after_reasoning:
+        set @variables.first_name = ""
+        set @variables.last_name = ""
+        set @variables.email = ""
+        set @variables.phone = ""
+        set @variables.status = ""
+        set @variables.join_date = ""
+        set @variables.tier = ""
+    actions:
+        add_member_to_list:
+            description: "Creates a new Salesforce Contact record as a member and returns the new Record ID."
+            inputs:
+                firstName: string
+                    is_required: True
+                    is_user_input: True
+                    description: "Member's first name."
+                lastName: string
+                    is_required: True
+                    is_user_input: True
+                    description: "Member's last name."
+                email: string
+                    is_user_input: True
+                    description: "Member's email address."
+                phone: string
+                    is_user_input: True
+                    description: "Member's phone number."
+                status: string
+                    is_user_input: True
+                    description: "Member status: Active or Inactive. Defaults to Active."
+                joinDate: string
+                    is_user_input: True
+                    description: "Member join date in YYYY-MM-DD format."
+                tier: string
+                    is_user_input: True
+                    description: "Member tier (e.g. Gold, Silver, Bronze)."
+            outputs:
+                success: boolean
+                    description: "True if the member was created successfully."
+                memberId: string
+                    description: "The Salesforce Record ID of the new member."
+            target: "apex://AddMemberAction"
+
+topic update_member:
+    label: "Update Member"
+    description: "Update details for an existing member by member ID"
+
+    before_reasoning:
+        if @variables.member_id == "":
+            transition to @topic.update_member
+
+    reasoning:
+        instructions: ->
+            | Require member_id, then ask which fields to update. Call update_member_in_list with only the fields the user wants to change. Confirm the updated values.
+        actions:
+            tool_update_member_in_list: @actions.update_member_in_list
+                with memberId = @variables.member_id
+                with firstName = ...
+                with lastName = ...
+                with email = ...
+                with phone = ...
+                with status = ...
+                with joinDate = ...
+                with tier = ...
+
+    after_reasoning:
+        set @variables.first_name = ""
+        set @variables.last_name = ""
+        set @variables.email = ""
+        set @variables.phone = ""
+        set @variables.status = ""
+        set @variables.join_date = ""
+        set @variables.tier = ""
+    actions:
+        update_member_in_list:
+            description: "Updates an existing Contact member record with provided fields."
+            inputs:
+                memberId: string
+                    is_required: True
+                    is_user_input: True
+                    description: "The Salesforce Record ID of the member to update."
+                firstName: string
+                    is_user_input: True
+                    description: "Updated first name (leave blank to keep existing)."
+                lastName: string
+                    is_user_input: True
+                    description: "Updated last name (leave blank to keep existing)."
+                email: string
+                    is_user_input: True
+                    description: "Updated email address (leave blank to keep existing)."
+                phone: string
+                    is_user_input: True
+                    description: "Updated phone number (leave blank to keep existing)."
+                status: string
+                    is_user_input: True
+                    description: "Updated status: Active or Inactive (leave blank to keep existing)."
+                joinDate: string
+                    is_user_input: True
+                    description: "Updated join date in YYYY-MM-DD format (leave blank to keep existing)."
+                tier: string
+                    is_user_input: True
+                    description: "Updated tier (leave blank to keep existing)."
+            outputs:
+                success: boolean
+                    description: "True if the update was successful."
+                updatedMemberId: string
+                    description: "The Record ID of the updated member."
+                updatedFirstName: string
+                    description: "Updated first name."
+                updatedLastName: string
+                    description: "Updated last name."
+                updatedEmail: string
+                    description: "Updated email."
+                updatedPhone: string
+                    description: "Updated phone."
+                updatedStatus: string
+                    description: "Updated status."
+                updatedTier: string
+                    description: "Updated tier."
+                updatedJoinDate: string
+                    description: "Updated join date."
+            target: "apex://UpdateMemberAction"
+
+topic lookup_member:
+    label: "Lookup Member"
+    description: "Look up a single member by member ID or email"
+
+    reasoning:
+        instructions: ->
+            | Ask for member_id or email. Call find_member, then display all returned fields if found. If not found, inform the user.
+        actions:
+            tool_find_member: @actions.find_member
+                with memberId = @variables.member_id
+                with email = @variables.email
+    actions:
+        find_member:
+            description: "Finds a Contact member by Record ID or email and returns their details."
+            inputs:
+                memberId: string
+                    is_user_input: True
+                    description: "The Salesforce Record ID of the member."
+                email: string
+                    is_user_input: True
+                    description: "The member's email address."
+            outputs:
+                found: boolean
+                    description: "True if a matching member was found."
+                memberId: string
+                    description: "The member's Salesforce Record ID."
+                firstName: string
+                    description: "Member's first name."
+                lastName: string
+                    description: "Member's last name."
+                email: string
+                    description: "Member's email."
+                phone: string
+                    description: "Member's phone."
+                status: string
+                    description: "Member's status."
+                tier: string
+                    description: "Member's tier."
+                joinDate: string
+                    description: "Member's join date."
+            target: "apex://FindMemberAction"
+
+topic list_members:
+    label: "List Members"
+    description: "List all members, optionally filtered by status or tier"
+
+    reasoning:
+        instructions: ->
+            | Optionally ask for status or tier filters. Call list_members_action, then present the count and member details from the JSON results.
+        actions:
+            tool_list_members_action: @actions.list_members_action
+                with statusFilter = @variables.status_filter
+                with tierFilter = @variables.tier_filter
+                set @variables.list_results = @outputs.results
+    actions:
+        list_members_action:
+            description: "Returns a JSON list of Contact members with optional status and tier filters."
+            inputs:
+                statusFilter: string
+                    is_user_input: True
+                    description: "Filter by member status (Active or Inactive). Leave blank for all."
+                tierFilter: string
+                    is_user_input: True
+                    description: "Filter by member tier. Leave blank for all."
+            outputs:
+                results: string
+                    description: "JSON array of matching member records."
+                count: integer
+                    description: "Total number of matching members."
+            target: "apex://ListMembersAction"
+
+topic set_member_status:
+    label: "Set Member Status"
+    description: "Deactivate or reactivate a member"
+
+    before_reasoning:
+        if @variables.member_id == "" or @variables.status == "":
+            transition to @topic.set_member_status
+
+    reasoning:
+        instructions: ->
+            | Require member_id and desired status (Active or Inactive). Call set_status_action, then confirm the change.
+        actions:
+            tool_set_status_action: @actions.set_status_action
+                with memberId = @variables.member_id
+                with status = @variables.status
+
+    after_reasoning:
+        set @variables.status = ""
+    actions:
+        set_status_action:
+            description: "Sets a Contact member status to Active or Inactive."
+            inputs:
+                memberId: string
+                    is_required: True
+                    is_user_input: True
+                    description: "The Salesforce Record ID of the member."
+                status: string
+                    is_required: True
+                    is_user_input: True
+                    description: "The desired status: Active or Inactive."
+            outputs:
+                success: boolean
+                    description: "True if the status was updated successfully."
+                updatedStatus: string
+                    description: "The new status value."
+                updatedFirstName: string
+                    description: "Member's first name."
+                updatedLastName: string
+                    description: "Member's last name."
+            target: "apex://SetMemberStatusAction"
+
+topic export_members:
+    label: "Export Members"
+    description: "Export members in CSV format"
+
+    reasoning:
+        instructions: ->
+            | Use the JSON in variables.list_results if available (from a prior list operation), otherwise call list_members_action first to get all members. Pass the JSON to export_members_csv and present the CSV output to the user.
+        actions:
+            tool_export_members_csv: @actions.export_members_csv
+                with rowsJson = @variables.list_results
+    actions:
+        export_members_csv:
+            description: "Converts a JSON list of members into a CSV string with headers."
+            inputs:
+                rowsJson: string
+                    is_user_input: True
+                    description: "JSON array of member records to export."
+            outputs:
+                csv: string
+                    description: "CSV-formatted string of member data."
+            target: "apex://ExportMembersCsvAction"

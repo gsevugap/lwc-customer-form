@@ -1,0 +1,56 @@
+{
+  "required" : [ "firstName", "lastName" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "email" : {
+      "title" : "Email",
+      "description" : "Member's email address.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "firstName" : {
+      "title" : "First Name",
+      "description" : "Member's first name.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "joinDate" : {
+      "title" : "Join Date",
+      "description" : "Member join date in YYYY-MM-DD format.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "lastName" : {
+      "title" : "Last Name",
+      "description" : "Member's last name.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "phone" : {
+      "title" : "Phone",
+      "description" : "Member's phone number.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "status" : {
+      "title" : "Status",
+      "description" : "Member status: Active or Inactive. Defaults to Active.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "tier" : {
+      "title" : "Tier",
+      "description" : "Member tier (e.g. Gold, Silver, Bronze).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}
